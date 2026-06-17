@@ -1,87 +1,208 @@
-/* --- Configurações Gerais dos Painéis --- */
-.painel-pessoa {
-    display: none; /* Esconde todos os painéis */
+@import url('https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@400;700&display=swap');
+
+:root {
+    --cor-de-fundo: #1E1E1E;
+    --verde: #6FFF57;
+    --branco: #FFFFFF;
+    --botao-ativo: #3A375E;
+    --botao-inativo: rgba(58, 55, 94, 0.5);
+    --texto-fundo: rgba(58, 55, 94, 0.3);
 }
 
-.painel-pessoa.ativo {
-    display: block; /* Mostra apenas o painel da pessoa selecionada */
+body {
+    background-color: var(--cor-de-fundo);
+    color: var(--branco);
+    font-family: 'Chakra Petch', sans-serif;
+    margin: 0;
+    padding: 20px 0;
 }
 
-/* --- Botões de Seleção de Pessoa --- */
+.conteudo-principal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.titulo-principal {
+    text-align: left;
+    width: 100%;
+    font-size: 32px;
+}
+
+.titulo-principal span {
+    color: var(--verde);
+}
+
+/* ==============================================
+   Navegação das Pessoas (Nível Superior)
+============================================== */
 .botoes-pessoas {
     display: flex;
     justify-content: center;
     gap: 15px;
+    width: 100%;
     margin-bottom: 30px;
+    flex-wrap: wrap; /* Evita que quebre layouts em telas pequenas */
 }
 
 .botao-pessoa {
-    padding: 10px 20px;
+    font-family: 'Chakra Petch', sans-serif;
     font-size: 18px;
+    font-weight: 700;
+    padding: 10px 30px;
     cursor: pointer;
-    background-color: #f0f0f0;
-    border: 2px solid #ccc;
-    border-radius: 5px;
-    transition: 0.3s;
+    background-color: var(--botao-inativo);
+    color: var(--branco);
+    border: 2px solid var(--botao-ativo);
+    border-radius: 40px; /* Bordas arredondadas seguindo o padrão do layout */
+    transition: 0.3s ease;
+}
+
+.botao-pessoa:hover {
+    background-color: var(--botao-ativo);
 }
 
 .botao-pessoa.ativo {
-    background-color: #4CAF50;
-    color: white;
-    border-color: #4CAF50;
+    background-color: var(--botao-ativo);
+    border-color: var(--verde);
+    color: var(--verde);
 }
 
-/* --- Botões de Seleção de Objetivos (Internos) --- */
+/* ==============================================
+   Controle dos Painéis
+============================================== */
+.conteudo {
+    width: 100%;
+}
+
+/* Esconde todos os painéis por padrão */
+.painel-pessoa {
+    display: none; 
+}
+
+/* Mostra apenas o painel da pessoa clicada */
+.painel-pessoa.ativo {
+    display: block; 
+}
+
+/* ==============================================
+   Navegação dos Objetivos (Nível Interno)
+============================================== */
 .botoes {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-    margin-bottom: 20px;
+    display: block;
 }
 
 .botao {
-    padding: 8px 16px;
+    font-family: 'Chakra Petch', sans-serif;
+    background-color: var(--botao-inativo);
+    color: var(--branco);
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    font-size: 18px;
+    align-items: center;
+    width: 100%;
+    border-bottom: 4px solid var(--botao-ativo);
+    border-left: 2px solid var(--botao-ativo);
+    border-right: 2px solid var(--botao-ativo);
+    border-top: none;
     cursor: pointer;
-    background-color: #e0e0e0;
-    border: none;
-    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.botao:first-child {
+    border-radius: 40px 40px 0 0;
 }
 
 .botao.ativo {
-    background-color: #333;
-    color: white;
+    background-color: var(--botao-ativo);
+    border-bottom: 4px solid var(--verde);
 }
 
-/* --- Controle das Abas de Conteúdo --- */
+/* ==============================================
+   Área de Conteúdo (Textos e Contadores)
+============================================== */
+.abas-textos {
+    background-color: var(--texto-fundo);
+    padding: 40px;
+    border-radius: 0 0 40px 40px;
+}
+
 .aba-conteudo {
-    display: none; /* Esconde os objetivos por padrão */
-    padding: 20px;
-    background: #f9f9f9;
-    border-radius: 8px;
+    display: none;
 }
 
 .aba-conteudo.ativo {
-    display: block; /* Mostra apenas o objetivo selecionado */
+    display: block;
 }
 
-/* --- Ajustes Visuais extras --- */
+.aba-conteudo-titulo-principal {
+    font-size: 28px;
+    text-align: center;
+    margin-top: 0;
+}
+
+/* Ajuste para o parágrafo "Modo de resolução" */
 .modo-resolucao {
-    margin: 10px 0;
-    color: #555;
+    text-align: center;
+    font-size: 18px;
     line-height: 1.5;
+    margin: 20px 0 40px 0;
 }
 
+.modo-resolucao strong {
+    color: var(--verde); /* Destaca "Como resolver:" com a cor neon */
+}
+
+.aba-conteudo-titulo-secundario {
+    text-align: center;
+    color: var(--verde);
+    text-transform: uppercase;
+}
+
+/* ==============================================
+   Cronômetro
+============================================== */
 .contador {
     display: flex;
-    gap: 10px;
-    margin-top: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
 }
 
 .contador-digito {
-    background-color: #fff;
-    padding: 10px;
-    border: 1px solid #ddd;
-    border-radius: 5px;
+    padding: 0 16px;
     text-align: center;
-    min-width: 50px;
+    min-width: 100px;
+}
+
+.contador-digito-numero {
+    font-size: 80px;
+    margin: 0;
+}
+
+.contador-digito-texto {
+    color: var(--verde);
+    font-size: 20px;
+    margin: 0;
+}
+
+/* ==============================================
+   Responsividade (Telas Maiores)
+============================================== */
+@media screen and (min-width: 768px) {
+    .botoes {
+        display: flex;
+    }
+
+    .botao:first-child {
+        border-radius: 40px 0 0 0;
+    }
+
+    .botao:last-child {
+        border-radius: 0 40px 0 0;
+    }
 }
